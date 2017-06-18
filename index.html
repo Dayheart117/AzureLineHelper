@@ -506,7 +506,7 @@ SNum = new Array();//↓每种宝石的数量*z0
    function changeavatar(n){
    	cardid = threetonumber(document.getElementById('cardid'+String(n)).value)
    	if ((cardid == 0) || (cardid == "") || (cardid == "0"))
-   		document.getElementById('avatar'+String(n)).src = '/static/null.png'
+   		document.getElementById('avatar'+String(n)).src = './LLhelpersis-6-18_files/null.png'
    	else if (document.getElementById('mezame'+String(n)).value == 0)
          document.getElementById('avatar'+String(n)).src = getimagepath(cards[cardid]['id'],'avatar',0)
    	else
