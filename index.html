@@ -514,12 +514,12 @@ SNum = new Array();//↓每种宝石的数量*z0
    }
    
    function changeavatarselect(){
-   	document.getElementById('imageselect').src = '/static/null.png'
+   	document.getElementById('imageselect').src = './LLhelpersis-6-18_files/null.png'
    	cardid = 0
    	if (document.getElementById('cardchoice').value != '')
    		cardid = cards[document.getElementById('cardchoice').value].id
    	if ((cardid == 0) || (cardid == "") || (cardid == "0"))
-   		document.getElementById('imageselect').src = '/static/null.png'
+   		document.getElementById('imageselect').src = './LLhelpersis-6-18_files/null.png'
    	else if (mezame == 0)
    		document.getElementById('imageselect').src = getimagepath(cards[document.getElementById('cardchoice').value]['id'],'avatar',0)
    	else
