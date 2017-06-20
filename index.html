@@ -877,20 +877,16 @@ function calc_arms(){
 	}
 }
 function P_Matrix(){
-	var P_sum18=0;
-	var P_sum24=0;
-	for (i = 0; i < 9; i++){
-		P_sum18+=Math.ceil((Math.ceil(attr[i]*0.018))(1 + Match_c[i]));
-		P_sum24+=Math.ceil((Math.ceil(attr[i]*0.024))(1 + Match_c[i]));
-	}
+	for (i = 0; i < 9; i++)
+		P_sum += (1 + Match_c[i])*attr[i];
 	for (i = 0; i < 9; i++) {
 		P_up[i]=new Array();
 		P_up[i][0] = 200 * (1.0 + Match_c[i]);
 		P_up[i][1] = 450 * (1.0 + Match_c[i]);
 		P_up[i][2] = 0.1*(1.0 + Match_c[i])*attr[i];
 		P_up[i][3] = 0.16*(1.0  + Match_c[i])*attr[i];
-		P_up[i][4] = P_sum18;
-		P_up[i][5] = P_sum24;
+		P_up[i][4] = 0.018*P_sum;
+		P_up[i][5] = 0.024*P_sum;
 		P_up[i][6] = skillP[i];
 	}//书写宝石强度加成矩阵
 }
