@@ -110,6 +110,7 @@ sname = new Array( "吻","香水","指环","十字","光环","面纱","奶/分" 
 comb=[];//每个二进制数值对应的宝石情况√
 arms=new Array();//√
 P_up=new Array();//每个成员的对应宝石贡献属性增值
+P_sum = 0;
 Sum_Max_Mem=0;
 MPM=new Array();
 Team_Method=[];
@@ -1008,6 +1009,7 @@ function calc_bestarm(){
    	saveToCookie();
 	/////////////
 	if(document.getElementById('autoarm0').checked){
+		P_sum=0;
 		Sum_Max_Mem=0;
 		Current_MP=0;
 		Team_Method=[];
