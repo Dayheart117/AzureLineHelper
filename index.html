@@ -609,10 +609,27 @@ SNum = new Array();//↓每种宝石的数量*z0
    
    var tmponsubmit
    function loadunit(){
-   	document.getElementById("unitform").action = '/llloadnewunit'
-   	tmponsubmit = document.getElementById("unitform").onsubmit
-   	document.getElementById("unitform").onsubmit = ''
-   	document.getElementById("unitform").target = 'if'
+   	if (window.FileReader) {  
+	var re=/(%7B)(.+?)(%7D)/g
+	var redata=/%22(\w+)%22:%22(\d+(\.\d+)?)%22/g
+	var file=document.getElementById("file").files[0];
+        var reader = new FileReader();  
+		var num=0;
+        reader.onload = function() {  
+		
+            teaminformation=this.result;
+			while(temR=re.exec(teaminformation)){
+				while(temdata=redata.exec(temR[2])){
+					document.getElementById(temdata[1]+String(num)).value=temdata[2];
+				}
+				changeavatar(num);
+				if(num==4) changecenter()
+				num++;
+			}
+			
+        }  
+        reader.readAsText(file);  
+    }
    }
    
    function precalcu(){
@@ -1655,7 +1672,7 @@ function calc_bestarm(){
 当前版本：4.1及以上。
 </pre>
 <input type="submit" name="clear" value="清空输入" onclick="clearall()"><br>
-<form action="http://llhelper.duapp.com/llnewunit" id="unitform" name="unitform" method="POST" onsubmit="return check()" enctype="multipart/form-data">
+<!--<form action="http://llhelper.duapp.com/llnewunit" id="unitform" name="unitform" method="POST" onsubmit="return check()" enctype="multipart/form-data">-->
 <!--<form action="/llloadunit"  onsubmit=""  target="if">-->
 <h3>歌曲信息</h3>
 搜索：<input type="text" id="songsearch" name="songsearch" value="" onchange="changesongselect()"><br>
@@ -2611,7 +2628,7 @@ function calc_bestarm(){
 <div style="float:left">
 
 <input type="button" value="保存队伍" onclick="saveunit()">
-<input type="file" name="file">
+<input type="file" id="file" name="file">
 <input type="submit" value="读取队伍" onclick="loadunit()">
 <br><br><br>
 <div id="sisreserves">
