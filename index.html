@@ -610,16 +610,17 @@ SNum = new Array();//↓每种宝石的数量*z0
    var tmponsubmit
    function loadunit(){
    	if (window.FileReader) {  
-	var re=/(%7B)(.+?)(%7D)/g
-	var redata=/%22(\w+)%22:%22(\d+(\.\d+)?)%22/g
+	var re=/{(.+?)}/g
+	var redata=/\"(\w+)\":\"(\d+(\.\d+)?)\"/g
 	var file=document.getElementById("file").files[0];
         var reader = new FileReader();  
 		var num=0;
         reader.onload = function() {  
 		
             teaminformation=this.result;
+			teaminformation=decodeURIComponent(teaminformation);
 			while(temR=re.exec(teaminformation)){
-				while(temdata=redata.exec(temR[2])){
+				while(temdata=redata.exec(temR[1])){
 					document.getElementById(temdata[1]+String(num)).value=temdata[2];
 				}
 				changeavatar(num);
