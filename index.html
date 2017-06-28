@@ -812,15 +812,6 @@ SNum = new Array();//↓每种宝石的数量*z0
 			document.getElementById("maxcost"+String(i)).value="8";
 		}
 	}
-	for(var i=0;i<9;i++){
-		for(var j=1;j<4;j++){
-		for(var k in unitgradechr[j]){
-		if(unitgradechr[j][k]==cards[parseInt(document.getElementById("cardid" + i.toString()).value)]["jpname"]){
-		gradecount[j-1]++;
-		}
-		}
-		}
-		}
 		for(var i=0;i<9;i++){
 		skillcount[skind[i]]++;
 		}
@@ -1287,8 +1278,16 @@ function calc_bestarm(){
       for (var i = 0; i < 9; i++) {
          if (isinunitgroup(mapcenter['secondlimit'], cards[member[i]["cardid"]]["jpname"])){
 			////////////////////
-			if(Precal)
+			if(Precal){
+			for(var g=1;g<=3;g++){
+				for(var j in unitgradechr[g]){
+					if(unitgradechr[g][j]==cards[member[i]["cardid"]]["jpname"]){
+						grade[i]=g;
+						}
+					}
+				}
 			if (mapcenter['base'] == mainatt) Match_c[i]+=(mapcenter['secondpercentage']/100);
+			}
 			//////////////////////
             result['bonusatt'][mapcenter['secondbase']] += Math.ceil(member[i][mapcenter['secondbase']]*mapcenter['secondpercentage']/100)
             attst[i] += Math.ceil(rawattst[i]*mapcenter['secondpercentage']/100)
@@ -1303,13 +1302,7 @@ function calc_bestarm(){
          if (mapcenter['base2'] == mainatt){
 			//////////
 			if(Precal){
-			for(var g=1;g<=3;g++){
-				for(var j in unitgradechr[j]){
-					if(unitgradechr[g][j]==cards[member[i]["cardid"]]["jpname"]){
-						grade[i]=g;
-						}
-					}
-				}
+			
 			Match_c[i]+=(mapcenter['percentage2']/100);
 			}
 			//////////
